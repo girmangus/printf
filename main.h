@@ -48,6 +48,7 @@ int print_HEXA_S(char s, char *result_holder, int o_p);
 int print_pa(va_list vlist, char *result_holder, int o_p);
 int print_rot13(va_list vlist, char *result_holder, int o_p);
 int print_S(va_list vlist, char *result_holder, int o_p);
+int print_r(va_list vlist, char *result_holder, int o_p);
 
 
 char *convert(unsigned long int num, int base, int lowercase);

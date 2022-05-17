@@ -24,6 +24,7 @@ int (*format_type(char *s))(va_list vlist, char *result_holder, int o_p)
 		{"p", print_pa},
 		{"R", print_rot13},
 		{"S", print_S},
+		{"r", print_r},
 		{NULL, NULL}
 	};
 	int x;
