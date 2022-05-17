@@ -42,5 +42,5 @@ int print_rot13(va_list vlist, char *result_holder, int o_p)
 		}
 		x++;
 	}
-	return (y);
+	return (x);
 }
