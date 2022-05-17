@@ -25,6 +25,18 @@ int (*format_type(char *s))(va_list vlist, char *result_holder, int o_p)
 		{"R", print_rot13},
 		{"S", print_S},
 		{"r", print_r},
+		{"ld", print_d},
+		{"li", print_i},
+		{"lu", print_un},
+		{"lo", print_o},
+		{"lx", print_hexa},
+		{"lX", print_HEXA},
+		{"hd", print_d},
+		{"hi", print_i},
+		{"hu", print_un},
+		{"ho", print_o},
+		{"hx", print_hexa},
+		{"hX", print_HEXA},
 		{NULL, NULL}
 	};
 	int x;
