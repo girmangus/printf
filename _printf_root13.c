@@ -12,12 +12,12 @@
  * Project Date - May 13, 2022 - May 18, 2022 
  * -----------------------------------------------
  */
-int print_rot13(va_list vlist, char *output_p, int o_p)
+int print_rot13(va_list vlist, char *result_holder, int o_p)
 {
 	int x = 0, y;
 	char *pt = va_arg(vlist, char *);
-	char alpha[] = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz";
-	char rot13[] = "NnOoPpQqRrSsTtUuVvWwXxYyZzAaBbCcDdEeFfGgHhIiJjKkLlMm";
+	char alpha[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	char rot13[] = "nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM";
 
 	if (!pt)
 		pt = "(ahyy)";
@@ -28,13 +28,13 @@ int print_rot13(va_list vlist, char *output_p, int o_p)
 		{
 			if (pt[x] == alpha[x])
 			{
-				output_p[o_p] = rot13[y];
+				result_holder[o_p] = rot13[y];
 				o_p++;
 				break;
 			}
 			if (pt[x] < 65 || (pt[x] > 90 && pt[x] < 97) || pt[x] > 122)
 			{
-				output_p[o_p] = pt[x];
+				result_holder[o_p] = pt[x];
 				o_p++;
 				break;
 			}
