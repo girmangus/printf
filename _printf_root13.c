@@ -14,33 +14,28 @@
  */
 int print_rot13(va_list vlist, char *result_holder, int o_p)
 {
-	int x = 0, y;
-	char *pt = va_arg(vlist, char *);
-	char alpha[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	char rot13[] = "nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM";
+	int i, j;
+	char *s = va_arg(vlist, char *);
+	char alphabet[] = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz";
+	char rAlphbet[] = "NnOoPpQqRrSsTtUuVvWwXxYyZzAaBbCcDdEeFfGgHhIiJjKkLlMm";
 
-	if (!pt)
-		pt = "(ahyy)";
-	while (pt[x])
+	if (!s)
+		s = "(null)";
+	for (i = 0; s[i]; ++i)
 	{
-		y = 0;
-		while (alpha[y])
+		for (j = 0; alphabet[j]; ++j)
 		{
-			if (pt[x] == alpha[x])
-			{
-				result_holder[o_p] = rot13[y];
+			if (alphabet[j] == s[i])
+			{	
+				result_holder[o_p] = rAlphbet[j];
 				o_p++;
 				break;
 			}
-			if (pt[x] < 65 || (pt[x] > 90 && pt[x] < 97) || pt[x] > 122)
-			{
-				result_holder[o_p] = pt[x];
-				o_p++;
-				break;
-			}
-			y++;
 		}
-		x++;
+		if (!alphabet[j])
+			result_holder[o_p] = s[i];
+			o_p++;
 	}
-	return (x);
+	
+	return (o_p);
 }
