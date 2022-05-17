@@ -23,6 +23,7 @@ int (*format_type(char *s))(va_list vlist, char *result_holder, int o_p)
 		{"X", print_HEXA},
 		{"p", print_pa},
 		{"R", print_rot13},
+		{"S", print_S},
 		{NULL, NULL}
 	};
 	int x;
