@@ -12,33 +12,35 @@
  * Project Date - May 13, 2022 - May 18, 2022 
  * -----------------------------------------------
  */
-int print_rot13(va_list vlist, char *result_holder, int o_p)
+int print_rot13(va_list vlist, char *output_p, int o_p)
 {
-	int i, j;
-	char alphabet[] = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz";
-	char rAlphbet[] = "NnOoPpQqRrSsTtUuVvWwXxYyZzAaBbCcDdEeFfGgHhIiJjKkLlMm";
-	char *s;
+	int x = 0, y;
+	char *pt = va_arg(vlist, char *);
+	char alpha[] = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz";
+	char rot13[] = "NnOoPpQqRrSsTtUuVvWwXxYyZzAaBbCcDdEeFfGgHhIiJjKkLlMm";
 
-	s = va_arg(vlist, char *);
-	if (!s)
-		s = "(null)";
-	for (i = 0; s[i]; ++i)
+	if (!pt)
+		pt = "(ahyy)";
+	while (pt[x])
 	{
-		for (j = 0; alphabet[j]; ++j)
+		y = 0;
+		while (alpha[y])
 		{
-			if (alphabet[j] == s[i])
+			if (pt[x] == alpha[x])
 			{
-				result_holder[o_p] = rAlphbet[j];
+				output_p[o_p] = rot13[y];
 				o_p++;
 				break;
 			}
+			if (pt[x] < 65 || (pt[x] > 90 && pt[x] < 97) || pt[x] > 122)
+			{
+				output_p[o_p] = pt[x];
+				o_p++;
+				break;
+			}
+			y++;
 		}
-		if (!alphabet[j]){
-			result_holder[o_p] = s[i];
-			o_p++;
-			break;
-		}
+		x++;
 	}
-	
 	return (o_p);
 }
