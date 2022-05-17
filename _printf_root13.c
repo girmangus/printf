@@ -32,10 +32,11 @@ int print_rot13(va_list vlist, char *result_holder, int o_p)
 				break;
 			}
 		}
-		if (!alphabet[j])
+		if (!alphabet[j]){
 			result_holder[o_p] = s[i];
 			o_p++;
+		}
 	}
-	
+
 	return (o_p);
 }
