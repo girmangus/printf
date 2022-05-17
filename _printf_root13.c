@@ -14,33 +14,31 @@
  */
 int print_rot13(va_list vlist, char *result_holder, int o_p)
 {
-	int x = 0, y;
+	int x = 0, y, i;
 	char *pt = va_arg(vlist, char *);
-	char alpha[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	char rot13[] = "nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM";
+	char alphabet[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	char rAlphbet[] = "nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM";
 
 	if (!pt)
-		pt = "(ahyy)";
-	while (pt[x])
+		pt = "(null)";
+	for (i = 0; pt[i]; ++i)
 	{
-		y = 0;
-		while (alpha[y])
+		for (y = 0; alphabet[y]; ++y)
 		{
-			if (pt[x] == alpha[x])
+			if (alphabet[y] == pt[i])
 			{
-				result_holder[o_p] = rot13[y];
+				result_holder[o_p] = rAlphbet[y];
 				o_p++;
 				break;
 			}
-			if (pt[x] < 65 || (pt[x] > 90 && pt[x] < 97) || pt[x] > 122)
-			{
-				result_holder[o_p] = pt[x];
-				o_p++;
-				break;
-			}
-			y++;
 		}
-		x++;
+		if (!alphabet[y]){
+			result_holder[o_p] = pt[x];
+				o_p++;
+				break;
+		}
 	}
+	
 	return (o_p);
+
 }
