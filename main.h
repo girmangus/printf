@@ -40,11 +40,15 @@ int print_n(int n, char *result_holder, int o_p);
 int print_d(va_list vlist, char *result_holder, int o_p);
 int print_i(va_list vlist, char *result_holder, int o_p);
 int print_o(va_list vlist, char *result_holder, int o_p);
+int print_b(va_list vlist, char *result_holder, int o_p);
 int print_un(va_list vlist, char *result_holder, int o_p);
 int print_hexa(va_list vlist, char *result_holder, int o_p);
 int print_HEXA(va_list vlist, char *output_o, int o_p);
 int print_HEXA_S(char s, char *result_holder, int o_p);
 int print_pa(va_list vlist, char *result_holder, int o_p);
 int print_rot13(va_list vlist, char *result_holder, int o_p);
+
+
+char *convert(unsigned long int num, int base, int lowercase);
 
 #endif

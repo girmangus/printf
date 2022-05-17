@@ -17,6 +17,7 @@ int (*format_type(char *s))(va_list vlist, char *result_holder, int o_p)
 		{"i", print_i},
 		{"d", print_d},
 		{"o", print_o},
+		{"b", print_b},
 		{"u", print_un},
 		{"x", print_hexa},
 		{"X", print_HEXA},

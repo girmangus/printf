@@ -1,5 +1,4 @@
 #include "main.h"
-char *p_binary(int n);
 /**
  * print_b - Print binary
  * @vlist: argument passed to print
@@ -15,54 +14,45 @@ char *p_binary(int n);
  */
 int print_b(va_list vlist, char *result_holder, int o_p)
 {
-	int x, y = 0;
+	unsigned int n;
+	int y = 0;
 	char *ptr;
 
-	x = va_arg(vlist, int);
-	ptr = p_binary(x);
+	n = va_arg(vlist, unsigned int);
+	ptr = convert(n, 2,1);
 
+	if (!n)
+		result_holder[o_p] = '0';
 	for (; ptr[y]; y++, o_p++)
 		result_holder[o_p] = ptr[y];
 	return (o_p);
 }
-/**
- * p_binary - Print %
- * @n: number for convert
- *
- * Description: return a binary
- * Return: 0
- */
-char *p_binary(int n)
-{
-	int a, b, count, flag = 0;
-	char *point, *zero = "0";
 
-	count = 0;
-	if (n == 0)
-		return (zero);
-	point = (char *)malloc(33);
-	if (!point)
-		exit(EXIT_FAILURE);
-	for (a = 31; a >= 0; a--)
+/**
+ * convert - function that converts our int to hex, octal, or binary
+ * @num: the number passed into the function
+ * @base: the base to convert to
+ *
+ * Return: the convertednumber of a certain base
+ */
+char *convert(unsigned long int num, int base, int lowercase)
+{
+	static char buffer[50];
+	char *ptr;
+	static char *Rep;
+	if(lowercase == 1)
+		 Rep  = "0123456789abcdef";
+	else
+		Rep = "0123456789ABCDEF";
+
+	ptr = &buffer[49];
+	*ptr = '\0';
+
+	while (num != 0)
 	{
-		b = n >> a;
-		if (b & 1)
-			*(point + count) = 1 + '0';
-		else
-			*(point + count) = 0 + '0';
-		count++;
+		*--ptr = Rep[num % base];
+		num /= base;
 	}
-	*(point + count) = '\0';
-	while (point)
-	{
-		{
-			if (*point != '0')
-				flag = 1;
-			if (flag == 1)
-				return (point);
-			point++;
-		}
-	}
-	free(point);
-	return (point);
+
+	return (ptr);
 }
