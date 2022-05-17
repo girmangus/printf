@@ -21,8 +21,9 @@ int print_b(va_list vlist, char *result_holder, int o_p)
 	n = va_arg(vlist, unsigned int);
 	ptr = convert(n, 2,1);
 
-	if (!n)
-		result_holder[o_p] = '0';
+	if (!n){
+		result_holder[o_p++] = '0';
+	}
 	for (; ptr[y]; y++, o_p++)
 		result_holder[o_p] = ptr[y];
 	return (o_p);
