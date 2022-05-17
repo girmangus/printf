@@ -18,15 +18,18 @@ int _printf(const char *format, ...)
 	char *ptr = (char *) format, *result_holder;
 	int (*ptr_func)(va_list, char *, int);
 	va_list vlist;
+	mods prefixes = PF_INIT;
 
 	if (!format)
 		return (-1);
 	va_start(vlist, format);
+	invalidInputs(ptr);
 	result_holder = malloc(sizeof(char) * SIZE);
 	if (!result_holder)
 		return (1);
 	while (format[x])
 	{
+		get_flags(*ptr, &prefixes);
 		if (format[x] != '%')
 			result_holder[o_p] = format[x], o_p++;
 		else if (s_trlen(ptr) != 1)
@@ -39,6 +42,7 @@ int _printf(const char *format, ...)
 		}
 		else
 			o_p = -1;
+
 		x++, ptr++;
 	}
 	va_end(vlist);

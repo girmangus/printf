@@ -3,13 +3,23 @@
 
 #define SIZE 2048
 
+#define PF_INIT {false, false, false}
+
 #include <stdlib.h>
 #include <stdarg.h>
 #include <unistd.h>
 #include <stdio.h>
 #include <string.h>
 #include <limits.h>
+#include <assert.h>
+#include <stdbool.h>
 
+typedef struct modifiers
+{
+    bool plus;
+    bool space;
+    bool hash;
+} mods;
 /**
  * struct t_format - Struct t_format
  *
@@ -49,8 +59,10 @@ int print_pa(va_list vlist, char *result_holder, int o_p);
 int print_rot13(va_list vlist, char *result_holder, int o_p);
 int print_S(va_list vlist, char *result_holder, int o_p);
 int print_r(va_list vlist, char *result_holder, int o_p);
+int get_flags(char s, mods *f);
 
-
+bool isNonAlphaNumeric(char c);
+bool invalidInputs(const char *p);
 char *convert(unsigned long int num, int base, int lowercase);
 
 #endif
