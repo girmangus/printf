@@ -14,31 +14,31 @@
  */
 int print_rot13(va_list vlist, char *result_holder, int o_p)
 {
-	int x = 0, y, i;
-	char *pt = va_arg(vlist, char *);
+	int i, j;
 	char alphabet[] = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz";
 	char rAlphbet[] = "NnOoPpQqRrSsTtUuVvWwXxYyZzAaBbCcDdEeFfGgHhIiJjKkLlMm";
+	char *s;
 
-	if (!pt)
-		pt = "(null)";
-	for (i = 0; pt[i]; ++i)
+	s = va_arg(vlist, char *);
+	if (!s)
+		s = "(null)";
+	for (i = 0; s[i]; ++i)
 	{
-		for (y = 0; alphabet[y]; ++y)
+		for (j = 0; alphabet[j]; ++j)
 		{
-			if (alphabet[y] == pt[i])
+			if (alphabet[j] == s[i])
 			{
-				result_holder[o_p] = rAlphbet[y];
+				result_holder[o_p] = rAlphbet[j];
 				o_p++;
 				break;
 			}
 		}
-		if (!alphabet[y]){
-			result_holder[o_p] = pt[x];
-				o_p++;
-				break;
+		if (!alphabet[j]){
+			result_holder[o_p] = s[i];
+			o_p++;
+			break;
 		}
 	}
 	
 	return (o_p);
-
 }
